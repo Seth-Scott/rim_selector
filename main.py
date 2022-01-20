@@ -18,6 +18,14 @@ fastener_size = {
     "l": "16d common",
 }
 
+rim_sizes = {
+    "a": '1-1/8" LSL',
+    "b": '1-1/4" LSL',
+    "c": '1-1/2" LSL',
+    "d": '1-3/4" LSL', 
+    "e": '3-1/2" LSL',
+}
+
 # user inputs values into this dictionary. dictionary is comprised of values in this order: label: spacing, rows, fastener type
 #     "A": [6, 2, fastener_size["a"]]
 
@@ -26,6 +34,9 @@ shear = {}
 def store_value(lab, spac, row, fast):
     shear[lab] = [spac, row, fast]
 
+
+pp.pprint(rim_sizes)
+project_min_rim = input(f"What's the minimum rim sized allowed per project or preferences? ")
 
 more_shear_walls = True
 while more_shear_walls:
@@ -41,7 +52,6 @@ while more_shear_walls:
         continue
     else:
         more_shear_walls = False
-        break
 
 pp.pprint(shear)
 
