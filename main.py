@@ -41,8 +41,8 @@ project_min_rim = input(f"What's the minimum rim sized allowed per project or pr
 more_shear_walls = True
 while more_shear_walls:
     label = input("Input label for shear wall: ")
-    spacing = input("Input the spacing (in inches): ")
-    rows = input("Input number of rows: ")
+    spacing = float(input("Input the spacing (in inches): "))
+    rows = int(input("Input number of rows: "))
     pp.pprint(fastener_size)
     fastener_type = input("Select a fastener type: ")
     store_value(label, spacing, rows, fastener_type)
@@ -55,4 +55,6 @@ while more_shear_walls:
 
 pp.pprint(shear)
 
+for k in shear.values():
+    print(f" spacing = {k[0]}, rows = {k[1]}, fastener = {k[2]}")
 # TODO work on hierarchy for if statements
