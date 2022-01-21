@@ -57,4 +57,8 @@ pp.pprint(shear)
 
 for k in shear.values():
     print(f" spacing = {k[0]}, rows = {k[1]}, fastener = {k[2]}")
+    # test logic
+    if k[0] >= 6:
+        print("3-1/2")
 # TODO work on hierarchy for if statements
+
