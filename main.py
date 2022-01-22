@@ -15,7 +15,6 @@ fastener_size = {
     "i": "10d N10 or NA9D",
     "j": "16d box",
     "k": "16d sinker",
-    "l": "16d common",
 }
 
 rim_sizes = {
