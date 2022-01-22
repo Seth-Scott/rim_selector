@@ -32,8 +32,13 @@ rim_sizes = {
 shear = {}
 
 def store_value(lab, spac, row, fast):
+    """ stores the user input values into a dictionary """
     shear[lab] = [spac, row, fast]
 
+
+def rim_calcs(k_spacing, k_rows, k_fasteners):
+    """ performs calculations for rim width per user input """
+    print(k_spacing, k_rows, k_fasteners)
 
 pp.pprint(rim_sizes)
 project_min_rim = input(f"What's the minimum rim sized allowed per project or preferences? ")
@@ -56,9 +61,11 @@ while more_shear_walls:
 pp.pprint(shear)
 
 for k in shear.values():
-    print(f" spacing = {k[0]}, rows = {k[1]}, fastener = {k[2]}")
-    # test logic
-    if k[0] >= 6:
-        print("3-1/2")
+    # print(f" spacing = {k[0]}, rows = {k[1]}, fastener = {k[2]}")
+    k_spacing = k[0]
+    k_rows = k[1]
+    k_fasteners = k[2]
+
+    rim_calcs(k_spacing, k_rows, k_fasteners)
 # TODO work on hierarchy for if statements
 
