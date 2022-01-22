@@ -15,6 +15,8 @@ fastener_size = {
     "i": "10d N10 or NA9D",
     "j": "16d box",
     "k": "16d sinker",
+    "l": "pneumatic",
+
 }
 
 rim_sizes = {
@@ -36,7 +38,10 @@ project_min_rim = input(f"What's the minimum rim sized allowed per project or pr
 def store_value(lab, spac, row, fast):
     """ stores the user input values into a dictionary """
     shear[lab] = [spac, row, fast]
+    # 1-1/8" width logic
     if project_min_rim == "a" and spac >= 16 and row == 1 and fast == "b" or fast == "j" or fast == "k":
+        shear[lab].append(rim_sizes["a"])
+    elif project_min_rim == "a" and spac >= 12 and row == 1 and fast == "l":
         shear[lab].append(rim_sizes["a"])
     elif project_min_rim == "a" and spac >= 6 and row == 1 and fast == "c" or fast == "d" or fast == "e" or fast == "f" or fast == "g" or fast == "h" or fast == "i":
         shear[lab].append(rim_sizes["a"])
