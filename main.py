@@ -15,7 +15,6 @@ fastener_size = {
     "i": "10d N10 or NA9D",
     "j": "16d box",
     "k": "16d sinker",
-    "l": "16d common",
 }
 
 rim_sizes = {
@@ -31,17 +30,16 @@ rim_sizes = {
 
 shear = {}
 
+pp.pprint(rim_sizes)
+project_min_rim = input(f"What's the minimum rim sized allowed per project or preferences? ")
+
 def store_value(lab, spac, row, fast):
     """ stores the user input values into a dictionary """
     shear[lab] = [spac, row, fast]
-
-
-def rim_calcs(k_spacing, k_rows, k_fasteners):
-    """ performs calculations for rim width per user input """
-    print(k_spacing, k_rows, k_fasteners)
-
-pp.pprint(rim_sizes)
-project_min_rim = input(f"What's the minimum rim sized allowed per project or preferences? ")
+    if project_min_rim == "a" and spac >= 16 and row == 1 and fast == "b" or fast == "j" or fast == "k":
+        shear[lab].append(rim_sizes["a"])
+    elif project_min_rim == "a" and spac >= 6 and row == 1 and fast == "c" or fast == "d" or fast == "e" or fast == "f" or fast == "g" or fast == "h" or fast == "i":
+        shear[lab].append(rim_sizes["a"])
 
 more_shear_walls = True
 while more_shear_walls:
@@ -60,12 +58,8 @@ while more_shear_walls:
 
 pp.pprint(shear)
 
-for k in shear.values():
-    # print(f" spacing = {k[0]}, rows = {k[1]}, fastener = {k[2]}")
-    k_spacing = k[0]
-    k_rows = k[1]
-    k_fasteners = k[2]
-
-    rim_calcs(k_spacing, k_rows, k_fasteners)
-# TODO work on hierarchy for if statements
-
+# for k in shear.values():
+#     # print(f" spacing = {k[0]}, rows = {k[1]}, fastener = {k[2]}")
+#     k_spacing = k[0]
+#     k_rows = k[1]
+#     k_fasteners = k[2]
