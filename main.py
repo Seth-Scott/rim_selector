@@ -30,18 +30,19 @@ rim_sizes = {
 #     "A": [6, 2, fastener_size["a"]]
 
 shear = {}
-
 def store_value(lab, spac, row, fast):
     """ stores the user input values into a dictionary """
     shear[lab] = [spac, row, fast]
 
+pp.pprint(rim_sizes)
+project_min_rim = input(f"What's the minimum rim sized allowed per project or preferences? ")
 
 def rim_calcs(k_spacing, k_rows, k_fasteners):
     """ performs calculations for rim width per user input """
-    print(k_spacing, k_rows, k_fasteners)
-
-pp.pprint(rim_sizes)
-project_min_rim = input(f"What's the minimum rim sized allowed per project or preferences? ")
+    # print(k_spacing, k_rows, k_fasteners)
+    if project_min_rim == "a" and k_spacing >= 16 and k_rows == 1 and k_fasteners != "a" != "b" != "c" != "d" != "e" != "f" != "g" != "h" != "i":
+        # 1-1/8" LSL logic for 16d box, 16d sinker, 16d common
+        print('You can use 1-1/8" rim ')        
 
 more_shear_walls = True
 while more_shear_walls:
