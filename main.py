@@ -37,6 +37,7 @@ project_min_rim = input(f"What's the minimum rim sized allowed per project or pr
 def store_value(lab, spac, row, fast):
     """ stores the user input values into a dictionary """
     shear[lab] = {"spacing": spac, "rows": row, "fastener": fastener_size[fast]}
+    # minimum calcs
     # 1-1/8" width logic, single row, minimum per project spec
     if ((project_min_rim == "a" and spac >= 16 and row == 1 and fast in "bjk") or
         (project_min_rim == "a" and spac >= 12 and row == 1 and fast in "l") or
@@ -58,6 +59,23 @@ def store_value(lab, spac, row, fast):
     if ((project_min_rim == "e" and spac >= 6 and row == 1 and fast in "ab") or
         (project_min_rim == "e" and spacing >= 3 and row == 1 and fast in "cdefghijkl")):
         shear[lab]["rim_sizes"] = rim_sizes["e"]    
+
+
+    # fringe calcs
+    # 1-1/8" logic, not taking minimum width into account, single row
+    if ((spac >= 16 and rows == 1 and fast in "bjk") or
+        (spac >= 12 and rows == 1 and fast in "l") or 
+        (spac >= 6 and rows == 1 and fast in "cdefghi")):
+        shear[lab]["rim_sizes"] = rim_sizes["a"]
+    # 1-1/4" logic, not taking minimum width into account, single row
+    elif ((spac >= 6 and rows == 1 and fast in "ab") or
+        (spac >= 4 and rows == 1 and fast in "cdefghijkl")):
+        shear[lab]["rim_sizes"] = rim_sizes["b"]
+    # 1-1/2" logic, not taking minimum width into account, single row
+    elif spac >= 3 and rows == 1 and fast in "cdefghijkl":
+        shear[lab]["rim_sizes"] = rim_sizes["c"]
+
+
 
     # if any of the above calculations do not return a favorable value, outputs an error
     else:
@@ -90,4 +108,5 @@ while more_shear_walls:
     else:
         more_shear_walls = False
 
+print(f" project minimum rim: {rim_sizes[project_min_rim]}")
 pp.pprint(shear)
