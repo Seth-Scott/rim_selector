@@ -15,6 +15,8 @@ fastener_size = {
     "i": "10d N10 or NA9D",
     "j": "16d box",
     "k": "16d sinker",
+    "l": "pneumatic",
+
 }
 
 rim_sizes = {
@@ -29,19 +31,21 @@ rim_sizes = {
 #     "A": [6, 2, fastener_size["a"]]
 
 shear = {}
-def store_value(lab, spac, row, fast):
-    """ stores the user input values into a dictionary """
-    shear[lab] = [spac, row, fast]
 
 pp.pprint(rim_sizes)
 project_min_rim = input(f"What's the minimum rim sized allowed per project or preferences? ")
 
-def rim_calcs(k_spacing, k_rows, k_fasteners):
-    """ performs calculations for rim width per user input """
-    # print(k_spacing, k_rows, k_fasteners)
-    if project_min_rim == "a" and k_spacing >= 16 and k_rows == 1 and k_fasteners != "a" != "b" != "c" != "d" != "e" != "f" != "g" != "h" != "i":
-        # 1-1/8" LSL logic for 16d box, 16d sinker, 16d common
-        print('You can use 1-1/8" rim ')        
+def store_value(lab, spac, row, fast):
+    """ stores the user input values into a dictionary """
+    shear[lab] = [spac, row, fast]
+    # 1-1/8" width logic
+    if project_min_rim == "a" and spac >= 16 and row == 1 and fast in "bjk":
+        shear[lab].append(rim_sizes["a"])
+    elif project_min_rim == "a" and spac >= 12 and row == 1 and fast in "l":
+        shear[lab].append(rim_sizes["a"])
+    elif project_min_rim == "a" and spac >= 6 and row == 1 and fast in "cdefghi":
+        shear[lab].append(rim_sizes["a"])
+
 
 more_shear_walls = True
 while more_shear_walls:
@@ -59,13 +63,3 @@ while more_shear_walls:
         more_shear_walls = False
 
 pp.pprint(shear)
-
-for k in shear.values():
-    # print(f" spacing = {k[0]}, rows = {k[1]}, fastener = {k[2]}")
-    k_spacing = k[0]
-    k_rows = k[1]
-    k_fasteners = k[2]
-
-    rim_calcs(k_spacing, k_rows, k_fasteners)
-# TODO work on hierarchy for if statements
-
