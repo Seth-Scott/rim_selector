@@ -16,7 +16,6 @@ fastener_size = {
     "j": "16d box",
     "k": "16d sinker",
     "l": "pneumatic",
-
 }
 
 rim_sizes = {
@@ -37,14 +36,13 @@ project_min_rim = input(f"What's the minimum rim sized allowed per project or pr
 
 def store_value(lab, spac, row, fast):
     """ stores the user input values into a dictionary """
-    shear[lab] = {"spacing": spac, "rows": row, "fastener": fast}
+    shear[lab] = {"spacing": spac, "rows": row, "fastener": fastener_size[fast]}
     # 1-1/8" width logic
-    if project_min_rim == "a" and spac >= 16 and row == 1 and fast in "bjk":
+    if ((project_min_rim == "a" and spac >= 16 and row == 1 and fast in "bjk") or
+        (project_min_rim == "a" and spac >= 12 and row == 1 and fast in "l") or
+        (project_min_rim == "a" and spac >= 6 and row == 1 and fast in "cdefghi")):
         shear[lab]["rim_sizes"] = rim_sizes["a"]
-    elif project_min_rim == "a" and spac >= 12 and row == 1 and fast in "l":
-        shear[lab]["rim_sizes"] = rim_sizes["a"]
-    elif project_min_rim == "a" and spac >= 6 and row == 1 and fast in "cdefghi":
-        shear[lab]["rim_sizes"] = rim_sizes["a"]
+    # 1-1/4" width logic
         
     # if any of the above calculations do not return a favorable value, outputs an error
     else:
@@ -54,7 +52,19 @@ more_shear_walls = True
 while more_shear_walls:
     label = input("Input label for shear wall: ")
     spacing = float(input("Input the spacing (in inches): "))
+    while spacing <= 0 or spacing >= 50:
+        spacing = float(input("Invalid quantity, please input a valid spacing (in inches): "))
+        if spacing > 0 and spacing < 50:
+            break
+        else:
+            continue
     rows = int(input("Input number of rows: "))
+    while rows <= 0 or rows >5:
+        rows = int(input("Invalid quantity, please input a valid number of rows: "))
+        if rows > 0 and rows <=5:
+            break
+        else:
+            continue
     pp.pprint(fastener_size)
     fastener_type = input("Select a fastener type: ")
     store_value(label, spacing, rows, fastener_type)
