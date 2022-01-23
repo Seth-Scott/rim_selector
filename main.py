@@ -46,6 +46,7 @@ def store_value(lab, spac, row, fast):
     elif project_min_rim == "a" and spac >= 6 and row == 1 and fast in "cdefghi":
         shear[lab].append(rim_sizes["a"])
 
+
 more_shear_walls = True
 while more_shear_walls:
     label = input("Input label for shear wall: ")
