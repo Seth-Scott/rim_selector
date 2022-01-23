@@ -37,27 +37,28 @@ project_min_rim = input(f"What's the minimum rim sized allowed per project or pr
 def store_value(lab, spac, row, fast):
     """ stores the user input values into a dictionary """
     shear[lab] = {"spacing": spac, "rows": row, "fastener": fastener_size[fast]}
-    # 1-1/8" width logic, single row
+    # 1-1/8" width logic, single row, minimum per project spec
     if ((project_min_rim == "a" and spac >= 16 and row == 1 and fast in "bjk") or
         (project_min_rim == "a" and spac >= 12 and row == 1 and fast in "l") or
         (project_min_rim == "a" and spac >= 6 and row == 1 and fast in "cdefghi")):
         shear[lab]["rim_sizes"] = rim_sizes["a"]
-    # 1-1/4" width logic, single row
-    if ((project_min_rim == "b" and spac >= 6 and row == 1 and fast in "ab") or
+    # 1-1/4" width logic, single row, minimum per project spec
+    elif ((project_min_rim == "b" and spac >= 6 and row == 1 and fast in "ab") or
         (project_min_rim == "b" and spac >= 4 and row == 1 and fast in "cdefghijkl")):
         shear[lab]["rim_sizes"] = rim_sizes["b"]
-    # 1-1/2" width logic, single row
+    # 1-1/2" width logic, single row, minimum per project spec
     if ((project_min_rim == "c" and spac >= 6 and row == 1 and fast in "ab") or
         (project_min_rim == "c" and spacing >= 3 and row == 1 and fast in "cdefghijkl")):
         shear[lab]["rim_sizes"] = rim_sizes["c"]
-    # 1-3/4" width logic, single row
+    # 1-3/4" width logic, single row, minimum per project spec
     if ((project_min_rim == "d" and spac >= 6 and row == 1 and fast in "ab") or
         (project_min_rim == "d" and spacing >= 3 and row == 1 and fast in "cdefghijkl")):
         shear[lab]["rim_sizes"] = rim_sizes["d"]
-    # 3-1/2" width logic, single row
+    # 3-1/2" width logic, single row, minimum per project spec
     if ((project_min_rim == "e" and spac >= 6 and row == 1 and fast in "ab") or
         (project_min_rim == "e" and spacing >= 3 and row == 1 and fast in "cdefghijkl")):
         shear[lab]["rim_sizes"] = rim_sizes["e"]    
+
     # if any of the above calculations do not return a favorable value, outputs an error
     else:
         shear[lab]["rim_sizes"] = "NO SOLUTION, REFERENCE TB-206 FOR MORE INFORMATION"
