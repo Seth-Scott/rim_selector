@@ -30,7 +30,6 @@ rim_sizes = {
 #     "A": [6, 2, fastener_size["a"]]
 
 shear = {}
-
 pp.pprint(rim_sizes)
 project_min_rim = input(f"What's the minimum rim sized allowed per project or preferences? ")
 
@@ -43,8 +42,10 @@ def store_value(lab, spac, row, fast):
         (project_min_rim == "a" and spac >= 12 and row == 1 and fast in "l") or
         (project_min_rim == "a" and spac >= 6 and row == 1 and fast in "cdefghi")):
         shear[lab]["rim_sizes"] = rim_sizes["a"]
+
+
     # 1-1/4" width logic, single row, minimum per project spec
-    elif ((project_min_rim == "b" and spac >= 6 and row == 1 and fast in "ab") or
+    if ((project_min_rim == "b" and spac >= 6 and row == 1 and fast in "ab") or
         (project_min_rim == "b" and spac >= 4 and row == 1 and fast in "cdefghijkl")):
         shear[lab]["rim_sizes"] = rim_sizes["b"]
     # 1-1/2" width logic, single row, minimum per project spec
