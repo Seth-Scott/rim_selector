@@ -44,9 +44,20 @@ def store_value(lab, spac, row, fast):
         shear[lab]["rim_sizes"] = rim_sizes["a"]
     # 1-1/4" width logic, single row
     if ((project_min_rim == "b" and spac >= 6 and row == 1 and fast in "ab") or
-        (project_min_rim == "b" and spac >= 6 and row == 1 and fast in "cedefghijkl")):
+        (project_min_rim == "b" and spac >= 4 and row == 1 and fast in "cdefghijkl")):
         shear[lab]["rim_sizes"] = rim_sizes["b"]
-
+    # 1-1/2" width logic, single row
+    if ((project_min_rim == "c" and spac >= 6 and row == 1 and fast in "ab") or
+        (project_min_rim == "c" and spacing >= 3 and row == 1 and fast in "cdefghijkl")):
+        shear[lab]["rim_sizes"] = rim_sizes["c"]
+    # 1-3/4" width logic, single row
+    if ((project_min_rim == "d" and spac >= 6 and row == 1 and fast in "ab") or
+        (project_min_rim == "d" and spacing >= 3 and row == 1 and fast in "cdefghijkl")):
+        shear[lab]["rim_sizes"] = rim_sizes["d"]
+    # 3-1/2" width logic, single row
+    if ((project_min_rim == "e" and spac >= 6 and row == 1 and fast in "ab") or
+        (project_min_rim == "e" and spacing >= 3 and row == 1 and fast in "cdefghijkl")):
+        shear[lab]["rim_sizes"] = rim_sizes["e"]    
     # if any of the above calculations do not return a favorable value, outputs an error
     else:
         shear[lab]["rim_sizes"] = "NO SOLUTION, REFERENCE TB-206 FOR MORE INFORMATION"
