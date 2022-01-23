@@ -37,13 +37,16 @@ project_min_rim = input(f"What's the minimum rim sized allowed per project or pr
 def store_value(lab, spac, row, fast):
     """ stores the user input values into a dictionary """
     shear[lab] = {"spacing": spac, "rows": row, "fastener": fastener_size[fast]}
-    # 1-1/8" width logic
+    # 1-1/8" width logic, single row
     if ((project_min_rim == "a" and spac >= 16 and row == 1 and fast in "bjk") or
         (project_min_rim == "a" and spac >= 12 and row == 1 and fast in "l") or
         (project_min_rim == "a" and spac >= 6 and row == 1 and fast in "cdefghi")):
         shear[lab]["rim_sizes"] = rim_sizes["a"]
-    # 1-1/4" width logic
-        
+    # 1-1/4" width logic, single row
+    if ((project_min_rim == "b" and spac >= 6 and row == 1 and fast in "ab") or
+        (project_min_rim == "b" and spac >= 6 and row == 1 and fast in "cedefghijkl")):
+        shear[lab]["rim_sizes"] = rim_sizes["b"]
+
     # if any of the above calculations do not return a favorable value, outputs an error
     else:
         shear[lab]["rim_sizes"] = "NO SOLUTION, REFERENCE TB-206 FOR MORE INFORMATION"
