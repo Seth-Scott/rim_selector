@@ -39,11 +39,11 @@ def store_value(lab, spac, row, fast):
     """ stores the user input values into a dictionary """
     shear[lab] = [spac, row, fast]
     # 1-1/8" width logic
-    if project_min_rim == "a" and spac >= 16 and row == 1 and fast == "b" or fast == "j" or fast == "k":
+    if project_min_rim == "a" and spac >= 16 and row == 1 and fast in "bjk":
         shear[lab].append(rim_sizes["a"])
-    elif project_min_rim == "a" and spac >= 12 and row == 1 and fast == "l":
+    elif project_min_rim == "a" and spac >= 12 and row == 1 and fast in "l":
         shear[lab].append(rim_sizes["a"])
-    elif project_min_rim == "a" and spac >= 6 and row == 1 and fast == "c" or fast == "d" or fast == "e" or fast == "f" or fast == "g" or fast == "h" or fast == "i":
+    elif project_min_rim == "a" and spac >= 6 and row == 1 and fast in "cdefghi":
         shear[lab].append(rim_sizes["a"])
 
 more_shear_walls = True
@@ -62,9 +62,3 @@ while more_shear_walls:
         more_shear_walls = False
 
 pp.pprint(shear)
-
-# for k in shear.values():
-#     # print(f" spacing = {k[0]}, rows = {k[1]}, fastener = {k[2]}")
-#     k_spacing = k[0]
-#     k_rows = k[1]
-#     k_fasteners = k[2]
